@@ -1,5 +1,6 @@
 FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
 USER root
+ENV HOME=/home/toolbox
 
 RUN microdnf -y install yum && \
     yum -y -q install bash tar gzip unzip which shadow-utils findutils wget curl \
