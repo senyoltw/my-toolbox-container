@@ -14,7 +14,7 @@ RUN microdnf -y install yum && \
     useradd -u 1001 -G wheel,root -d ${HOME} --shell /bin/bash -m toolbox && \
     mkdir -p ${HOME}/che /projects && \
     
-    for f in "${HOME}" "/etc/passwd" "/etc/group" "/projects"; do \
+    for f in "${HOME}" "/etc/passwd" "/etc/group" "/projects" "/usr/local/bin/"; do \
         chgrp -R 0 ${f} && \
         chmod -R g+rwX ${f}; \
     done && \
