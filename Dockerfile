@@ -23,7 +23,8 @@ RUN microdnf -y install yum && \
     for f in "${HOME}" "/etc/passwd" "/etc/group" "/projects"; do \
         chgrp -R 0 ${f} && \
         chmod -R g+rwX ${f}; \
-    done 
+    done && \
+    echo "toolbox	ALL=(ALL)	NOPASSWD: ALL" >> /etc/sudoers && \
     
 
 USER toolbox
