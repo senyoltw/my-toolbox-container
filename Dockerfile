@@ -11,7 +11,7 @@ RUN microdnf -y install yum && \
     yum -y -q update && \
     yum -y -q clean all && rm -rf /var/cache/yum && \
     
-    useradd -u 1000680000 -G wheel,root -d ${HOME} --shell /bin/bash -m toolbox && \
+    useradd -u 1001 -G wheel,root -d ${HOME} --shell /bin/bash -m toolbox && \
     mkdir -p ${HOME}/che /projects && \
     
     for f in "${HOME}" "/etc/passwd" "/etc/group" "/projects" "/usr/local/bin/"; do \
