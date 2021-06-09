@@ -8,7 +8,7 @@ ENV HOME=/home/toolbox \
 
 RUN microdnf -y install yum && \
     yum -y -q install bash tar gzip unzip which shadow-utils findutils wget curl \
-    sudo git procps-ng bzip2 make podman && \
+    sudo git procps-ng bzip2 gcc make podman podman-docker && \
     
     yum -y -q module reset python38 && \
     yum -y -q module enable python38:${PYTHON_VERSION} && \
@@ -26,6 +26,6 @@ RUN microdnf -y install yum && \
     done 
     
 
-USER 1001
+USER toolbox
 WORKDIR /projects
 CMD tail -f /dev/null
