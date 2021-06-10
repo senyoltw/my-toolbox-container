@@ -21,8 +21,8 @@ RUN microdnf -y install yum && \
     echo "toolbox	ALL=(ALL)	NOPASSWD: ALL" >> /etc/sudoers
     
 
-ADD entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+ADD entrypoint.sh ${HOME}/
+RUN chmod +x ${HOME}/*.sh
 
 USER toolbox
 ENTRYPOINT [ "/entrypoint.sh" ]
