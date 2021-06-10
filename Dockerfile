@@ -20,6 +20,17 @@ RUN microdnf -y install yum && \
     done && \
     echo "toolbox	ALL=(ALL)	NOPASSWD: ALL" >> /etc/sudoers
 
+RUN cat /etc/passwd | \
+    sed s#toolbox:x.*#toolbox:x:\${USER_ID}:\${GROUP_ID}::\${HOME}:/bin/bash#g \
+    > ${HOME}/passwd.template && \
+    cat /etc/group | \
+    sed s#root:x:0:#root:x:0:0,\${USER_ID}:#g \
+    > ${HOME}/group.template
+
+ADD entrypoint.sh ${HOME}/
+RUN chmod +x ${HOME}/*.sh
+
 USER toolbox
+ENTRYPOINT ["/home/toolbox/entrypoint.sh"]
 WORKDIR /projects
 CMD tail -f /dev/null
