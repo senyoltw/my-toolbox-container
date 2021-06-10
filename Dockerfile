@@ -22,9 +22,9 @@ RUN microdnf -y install yum && \
     
 
 ADD entrypoint.sh ${HOME}/
-RUN chmod +x ${HOME}/*.sh
+RUN chmod +x ${HOME}/entrypoint.sh
 
 USER toolbox
-ENTRYPOINT [ "/entrypoint.sh" ]
+ENTRYPOINT ["/home/toolbox/entrypoint.sh"]
 WORKDIR /projects
 CMD tail -f /dev/null
