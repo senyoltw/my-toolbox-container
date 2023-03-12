@@ -3,7 +3,7 @@ USER root
 ENV HOME=/home/toolbox
 
 RUN microdnf -y install yum && \
-    yum -y -q install bash tar gzip unzip which shadow-utils findutils wget curl \
+    yum -y -q install bash tar gzip unzip which shadow-utils findutils wget curl iputils \
     sudo git procps-ng bzip2 gcc make podman podman-docker && \
     
     yum -y -q install python38 python38-devel python38-setuptools python38-pip && \
