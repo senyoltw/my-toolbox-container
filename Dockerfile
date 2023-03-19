@@ -3,7 +3,7 @@ USER root
 ENV HOME=/home/toolbox
 
 RUN microdnf -y install yum && \
-    yum -y -q install bash tar gzip unzip which shadow-utils findutils wget curl iputils bind-utils \
+    yum -y -q install bash tar gzip unzip which shadow-utils findutils wget curl iputils bind-utils bash \
     sudo git procps-ng bzip2 gcc make podman podman-docker && \
     
     yum -y -q install python38 python38-devel python38-setuptools python38-pip && \
@@ -19,6 +19,10 @@ RUN microdnf -y install yum && \
         chmod -R g+rwX ${f}; \
     done && \
     echo "toolbox	ALL=(ALL)	NOPASSWD: ALL" >> /etc/sudoers
+
+RUN wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/stable/openshift-client-linux.tar.gz && \
+    sudo tar xzf openshift-client-linux.tar.gz -C /usr/local/sbin/ oc kubectl && \
+    oc completion bash | sudo tee /etc/bash_completion.d/openshift > /dev/null
 
 RUN cat /etc/passwd | \
     sed s#toolbox:x.*#toolbox:x:\${USER_ID}:\${GROUP_ID}::\${HOME}:/bin/bash#g \
